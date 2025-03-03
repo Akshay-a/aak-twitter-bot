@@ -1,13 +1,9 @@
 import tweepy
 from datetime import datetime
-
+from env import BEARER_TOKEN, API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 # Replace these with your actual Twitter API credentials
-API_KEY = "R7IQeCdBKs1GwGYUgBM36KTGo"
-API_SECRET = "DVyjyGXp3TgfNLcgq0HGNiZN2gGKlDqQG9bdZzEYpGze7NqGGh"
-ACCESS_TOKEN = "1179237859527548928-eJaohNO1UgMobodOpISGqTxIfCnkfs"
-ACCESS_TOKEN_SECRET = "kkJTKfZXX9lqe0A7lrOiZxEbmfiqYUJX1Url0C38NJ6fg"
-BEARER_TOKEN="AAAAAAAAAAAAAAAAAAAAANXBzgEAAAAAe48FrB7NITXfPN1H7Iwu99OtaXY%3DMkDu2rdCA8bAJf9e4v6slcS7wXB0Ldn6Dkz4MU3qDLPMTWRbc4"
-# Authenticate with Twitter API
+
+
 # Authenticate with v2 Client
 client = tweepy.Client(
     bearer_token=BEARER_TOKEN,
@@ -22,6 +18,17 @@ def is_challenge_tweet(tweet_text):
     challenge_keywords = ["$ to", "challenge"]
     return all(keyword.lower() in tweet_text.lower() for keyword in challenge_keywords)
 
+
+"""
+SAMPLE CHALLENGE TWEET format to be used for the function extract_entry_details(tweet_text):
+150$-300$
+
+Closing $BTC long 
+
+Gained 24$
+
+Now balance is 206$
+"""
 def extract_entry_details(tweet_text):
     """Extract challenge entry details from the tweet."""
     lines = tweet_text.split('\n')
@@ -75,9 +82,4 @@ def check_user_tweets(username="Crypto_Arki", count=5):
 if __name__ == "__main__":
     print(f"Checking tweets as of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     check_user_tweets("Crypto_Arki", 5)
- #AAAAAAAAAAAAAAAAAAAAANXBzgEAAAAAe48FrB7NITXfPN1H7Iwu99OtaXY%3DMkDu2rdCA8bAJf9e4v6slcS7wXB0Ldn6Dkz4MU3qDLPMTWRbc4
-
-#access toekn
-#1179237859527548928-eJaohNO1UgMobodOpISGqTxIfCnkfs
-#access token sceret
-#kkJTKfZXX9lqe0A7lrOiZxEbmfiqYUJX1Url0C38NJ6fg   
+ 
